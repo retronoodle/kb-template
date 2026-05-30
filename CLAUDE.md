@@ -4,6 +4,49 @@
 
 ---
 
+## 🔄 Template Sync
+
+This is the **master template repo**. Satellites pull from it; they never push back.
+
+**To push template updates** (from `~/claude/kb`):
+```bash
+git add CLAUDE.md MEMORY.md
+git commit -m "your message"
+git push
+```
+
+**To set up a new satellite** (in the satellite's repo):
+```bash
+git remote add template <github-url>
+git remote set-url --push template DISABLED
+```
+
+**To pull this template into a satellite:**
+```bash
+git fetch template
+git checkout template/master -- CLAUDE.md
+```
+
+**To create a new satellite repo on GitHub** (run inside the satellite folder):
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+gh repo create <repo-name> --private --source=. --remote=origin --push
+git remote add template https://github.com/retronoodle/kb-template.git
+git remote set-url --push template DISABLED
+```
+
+**To clone a satellite on a new machine:**
+```bash
+git clone <satellite-github-url>
+cd <repo-name>
+git remote add template https://github.com/retronoodle/kb-template.git
+git remote set-url --push template DISABLED
+```
+
+---
+
 ## ⚙️ Configuration
 
 ```yaml
