@@ -24,7 +24,11 @@ git remote set-url --push template DISABLED
 **To pull this template into a satellite:**
 ```bash
 git fetch template
-git checkout template/master -- CLAUDE.md
+git diff HEAD template/master -- CLAUDE.md   # review what changed
+git checkout template/master -- CLAUDE.md    # then manually restore satellite-specific sections:
+                                             #   - Template Sync section (swap master→satellite wording)
+                                             #   - Configuration block (library_name, owner, etc.)
+                                             #   - Knowledge Index entries
 ```
 
 **To create a new satellite repo on GitHub** (run inside the satellite folder):
